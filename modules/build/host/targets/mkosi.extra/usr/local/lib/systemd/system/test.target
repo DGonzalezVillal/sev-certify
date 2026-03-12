@@ -1,0 +1,11 @@
+# Target reached when all the tests are complete.
+# Job services should use: WantedBy=test.target
+
+[Unit]
+Description=test stage
+
+Wants=test-done.service
+After=test-done.service
+
+After=launch.target
+Requires=launch.target

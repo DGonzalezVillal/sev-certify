@@ -1,0 +1,16 @@
+[Unit]
+Description=Advance from system -> launch
+
+Requires=beacon-boot.service snphost-ok.service systemd-journal-remote.socket
+After=beacon-boot.service snphost-ok.service systemd-journal-remote.socket
+
+OnSuccess=launch.target
+OnFailure=stop.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/true
+RemainAfterExit=yes
+
+[Install]
+WantedBy=system.target

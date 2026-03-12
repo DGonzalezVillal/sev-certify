@@ -1,0 +1,17 @@
+[Unit]
+Description=Advance from test -> report
+
+
+After=launch.target
+Wants=launch.target
+
+OnSuccess=report.target
+OnFailure=stop.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/true
+RemainAfterExit=yes
+
+[Install]
+WantedBy=test.target
