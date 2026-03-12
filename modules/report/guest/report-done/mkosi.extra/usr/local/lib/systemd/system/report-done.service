@@ -1,0 +1,15 @@
+[Unit]
+Description=Advance from report -> stop
+
+Requires=systemd-journal-upload.service display-guest-environment-sev-v-3_0_0.service
+After=systemd-journal-upload.service display-guest-environment-sev-v-3_0_0.service 
+
+OnSuccess=stop.target
+OnFailure=stop.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/true
+
+[Install]
+WantedBy=report.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=Advance from system -> launch
+
+Requires=beacon-report.service log-in-or-reboot.service
+After=beacon-report.service log-in-or-reboot.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/true
+
+[Install]
+WantedBy=stop.target

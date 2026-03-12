@@ -1,0 +1,15 @@
+[Unit]
+Description=Advance from test -> logging
+
+Requires=attestation-result.service attestation-workflow.service
+After=attestation-result.service attestation-workflow.service
+
+OnSuccess=logging.target
+OnFailure=stop.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/true
+
+[Install]
+WantedBy=test.target

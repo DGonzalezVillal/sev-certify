@@ -1,0 +1,16 @@
+[Unit]
+Description=Advance from system -> test
+
+Requires=boot-succesful.service snpguest-ok.service
+After=boot-succesful.service snpguest-ok.service
+
+OnSuccess=test.target
+OnFailure=stop.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/true
+RemainAfterExit=yes
+
+[Install]
+WantedBy=system.target

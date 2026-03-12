@@ -1,0 +1,11 @@
+[Unit]
+Description=Show the SEV certifcate
+After=display-guest-logs.service
+Wants=display-guest-logs.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /usr/local/lib/scripts/generate_sev_certificate/sev_certificate/generate_sev_certificate.py
+StandardOutput=journal+console
+StandardError=journal+console
+LogExtraFields="SEV_REPORT=TRUE"

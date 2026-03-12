@@ -1,0 +1,15 @@
+[Unit]
+Description=Advance from report -> stop
+
+Requires=display-guest-logs.service sev-certificate-generator.service
+After=display-guest-logs.service sev-certificate-generator.service
+
+OnSuccess=stop.target
+OnFailure=stop.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/true
+
+[Install]
+WantedBy=report.target

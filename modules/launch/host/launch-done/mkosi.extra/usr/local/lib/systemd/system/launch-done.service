@@ -1,0 +1,16 @@
+[Unit]
+Description=Advance from launch -> test
+
+Requires=guest-measurement.service launch-guest.service
+After=guest-measurement.service launch-guest.service
+
+OnSuccess=test.target
+OnFailure=stop.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/true
+RemainAfterExit=yes
+
+[Install]
+WantedBy=launch.target

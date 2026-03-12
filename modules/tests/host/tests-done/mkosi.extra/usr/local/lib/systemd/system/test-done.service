@@ -1,0 +1,16 @@
+[Unit]
+Description=Advance from test -> logging
+
+
+After=launch.target
+Wants=launch.target
+
+OnSuccess=logging.target
+OnFailure=stop.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/true
+
+[Install]
+WantedBy=test.target
