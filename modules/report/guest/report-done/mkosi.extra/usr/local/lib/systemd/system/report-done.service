@@ -1,0 +1,13 @@
+[Unit]
+Description=Stop Barrier
+
+Requires=tests-finished.service
+After=tests-finished.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/true
+RemainAfterExit=yes
+
+[Install]
+WantedBy=report.target
