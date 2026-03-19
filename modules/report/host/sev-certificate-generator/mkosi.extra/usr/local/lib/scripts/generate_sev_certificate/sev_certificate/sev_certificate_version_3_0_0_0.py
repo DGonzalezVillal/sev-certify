@@ -86,7 +86,7 @@ class SEV_Certificate:
         """Generate SNP Guest Attestation summary from the SNP guest attestation status service."""
 
         # Get journal entries with SNP Guest Attestation test results
-        guest_attestation_service="fetch-snpguest-attestation-status.service"
+        guest_attestation_service="attestation-result.service"
         snpguest_attestation_cmd = f"journalctl -D {self.guest_logs_path} -u {guest_attestation_service} -o cat"
         snpguest_attestation_result = subprocess.run(snpguest_attestation_cmd, shell=True, check=True, text=True, capture_output=True)
 
@@ -138,7 +138,7 @@ class SEV_Certificate:
             content += "  " + service_description + "\n"
 
             # Add step-by-step summary status of the guest attestation workflow
-            if "snpguest-attestation.service" in service.lower() :
+            if "attestation-workflow.service" in service.lower() :
                 content += guest_attestation_summary
 
             # Set "snpguest_emoji" status based on the single failed/skipped SNP test
