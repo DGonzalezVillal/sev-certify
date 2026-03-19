@@ -31,13 +31,16 @@ snpguest_regular_attestation_workflow() {
   mkdir -p "${ATTESTATION_DIR}"
 
   # Generate the SNP Attestation Report using a randomly generated request data
+  echo -e "\nRequesting report"
   { snp_guest_report=$(snpguest report ${ATTESTATION_DIR}/attestation-report.bin ${ATTESTATION_DIR}/random-request-data.bin --random 2>&1); report_status=$?; }
   check_command_status "${report_status}" "Generation of SNP Guest Report" "${snp_guest_report}" || return 1
 
+  echo -e "\n fetching cert chain from kds..."
   # Fetch the ARK, ASK certificate chain from Key Distribution Server
   { fetch_ca=$(snpguest fetch ca pem -r "${ATTESTATION_DIR}/attestation-report.bin" "${ATTESTATION_DIR}/certificates" 2>&1); fetch_ca_status=$?; }
   check_command_status "${fetch_ca_status}" "Fetch of CA certificate chain" "${fetch_ca}" || return 1
 
+  echo -e "\n fetching VCEK from kds..."
   # Fetch the VCEK certificate chain from Key Distribution Server
   { fetch_vcek=$(snpguest fetch vcek pem ${ATTESTATION_DIR}/certificates/ ${ATTESTATION_DIR}/attestation-report.bin 2>&1); fetch_vcek_status=$?; }
   check_command_status "${fetch_vcek_status}" "Fetch of VCEK certificate chain" "${fetch_vcek}" || return 1

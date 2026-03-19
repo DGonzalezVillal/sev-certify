@@ -4,4 +4,4 @@
 [Unit]
 Description=Boot Stage
 After=network-online.target
-Wants=network-online.target
+Requires=network-online.target

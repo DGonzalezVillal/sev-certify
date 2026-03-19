@@ -1,7 +1,7 @@
 [Unit]
 Description=Run snguest ok to verify SNP enablement on guest
-After=boot.target
-Requires=boot.target
+After=boot-succesful.service
+wants=boot-succesful.service
 
 [Service]
 Type=oneshot

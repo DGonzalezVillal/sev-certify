@@ -1,8 +1,8 @@
 [Unit]
 Description=Fetch SNP Guest Attestation Status inside the guest
 DefaultDependencies=no
-After=snpguest-attestation.service
-Wants=snpguest-attestation.service
+After=attestation-workflow.service
+Wants=attestation-workflow.service
 
 [Service]
 Type=oneshot

@@ -9,3 +9,4 @@ Type=oneshot
 ExecStart=/usr/local/lib/scripts/launch-and-verify.sh
 StandardOutput=journal+console
 StandardError=journal+console
+LogExtraFields="SEV_VERSION=3.0.0-0" "SNPHOST_TEST=3.0.0-0"

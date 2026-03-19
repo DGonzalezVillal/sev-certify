@@ -1,7 +1,9 @@
 [Unit]
 Description=Announce that the boot was succesful for guest
-After=boot.target
-Requires=boot.target
+DefaultDependencies=no
+After=network-online.target
+Wants=network-online.target
+
 
 [Service]
 Type=oneshot

@@ -39,50 +39,26 @@ qemu-system-x86_64 \
   -kernel "${EFI_PATH}" \
   2> "${GUEST_ERROR_LOG}" &
 
-QEMU_PID=$!
-BOOT_VERIFIED=0
-
-cleanup() {
-  if [[ "$BOOT_VERIFIED" -eq 1 ]]; then
-    return 0
-  fi
-
-  if kill -0 "$QEMU_PID" 2>/dev/null; then
-    kill "$QEMU_PID" 2>/dev/null || true
-    sleep 1
-    kill -9 "$QEMU_PID" 2>/dev/null || true
-  fi
-}
-
-trap cleanup EXIT INT TERM
-
-echo "SNP Guest boot is in progress (pid=${QEMU_PID}) ..."
 
 TIMEOUT=60
 INTERVAL=1
 ELAPSED=0
 
 while [[ $ELAPSED -lt $TIMEOUT ]]; do
-  if journalctl -D "${BOOT_LOG_DIR}" 2>/dev/null | grep -q "boot-successful"; then
-    echo "Guest boot successful."
-    BOOT_VERIFIED=1
-    exit 0
-  fi
-
-  sleep "$INTERVAL"
-  ELAPSED=$((ELAPSED + INTERVAL))
-
-  if ! kill -0 "$QEMU_PID" 2>/dev/null; then
-    echo "ERROR: QEMU exited before guest signaled boot-successful." >&2
-    break
-  fi
+    if journalctl -D "${BOOT_LOG_DIR}" 2>/dev/null | grep -q "boot-successful"; then
+        echo "Guest boot successful."
+        exit 0
+    fi
+    sleep $INTERVAL
+    ELAPSED=$((ELAPSED + INTERVAL))
 done
 
-echo "ERROR: Timed out waiting for SNP Guest to signal successful boot." >&2
+echo -e "ERROR: Timed out waiting for SNP Guest to signal successful boot.\n" >&2
 
-if [[ -s "${GUEST_ERROR_LOG}" ]]; then
-  echo -e "QEMU error log:\n" >&2
-  cat "${GUEST_ERROR_LOG}" >&2
+# Show guest boot log errors if any
+if [ -s "${GUEST_ERROR_LOG}" ]; then
+    echo -e "QEMU error log:\n" >&2
+    cat "${GUEST_ERROR_LOG}" >&2
 fi
 
 exit 2

@@ -7,7 +7,7 @@ TIMEOUT=60
 INTERVAL=1
 ELAPSED=0
 
-units=("snpguest-ok.service" "snpguest-attestation.service")
+units=("snpguest-ok.service" "attestation-workflow.service")
 
 args=()
 for unit in "${units[@]}"; do
