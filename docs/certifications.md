@@ -12,7 +12,7 @@ AMD EPYC 7003 (Milan)
 -------------
 | OS |  Status |  3.0 Certification |
 |---|---|---|
-| CentOS 10 | ✅ | [c3.0.0-0](https://github.com/DGonzalezVillal/sev-certify/issues/81) |
+| CentOS 10 | ✅ | [c3.0.0-0](https://github.com/DGonzalezVillal/sev-certify/issues/86) |
 | Debian 13 |  ❌ |  [N/A](https://github.com/AMDEPYC/sev-certify/issues/152) |
 | Debian Forky | ✅ | [c3.0.0-0](https://github.com/DGonzalezVillal/sev-certify/issues/82) |
 | Fedora 41 | ✅ | [c3.0.0-0](https://github.com/DGonzalezVillal/sev-certify/issues/83) |
