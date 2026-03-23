@@ -19,7 +19,7 @@ AMD EPYC 7003 (Milan)
 | Rocky 10.0 |  ❌ |  N/A |
 | Rocky 10.1 | ✅ | [c3.0.0-0](https://github.com/AMDEPYC/sev-certify/issues/230) |
 | Ubuntu 25.04 | ✅ | [c3.0.0-0](https://github.com/DGonzalezVillal/sev-certify/issues/94) |
-| Ubuntu 25.10 | ✅ | [c3.0.0-0](https://github.com/DGonzalezVillal/sev-certify/issues/95) |
+| Ubuntu 25.10 | ✅ | [c3.0.0-0](https://github.com/DGonzalezVillal/sev-certify/issues/96) |
 
 AMD EPYC 9004 (Genoa)
 -------------
